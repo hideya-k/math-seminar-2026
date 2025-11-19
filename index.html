@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「同じ」って何だろう？ - 市民講座</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/white.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/plugin/highlight/monokai.min.css">
+
+    <style>
+        /* カスタムCSS */
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            text-transform: none; /* アルファベットを勝手に大文字にしない */
+        }
+        /* 強調したい文字 */
+        .accent { color: #e74c3c; font-weight: bold; }
+        .blue { color: #3498db; font-weight: bold; }
+        
+        /* スライドごとのレイアウト調整 */
+        .container { display: flex; justify-content: center; align-items: center; gap: 20px; }
+        .col { flex: 1; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h2>「同じ」って何だろう？</h2>
+                <h3>～「動かし方」のルールが決める<br>「かたち」の世界～</h3>
+                <p style="margin-top: 50px; font-size: 0.8em;">
+                    2026年X月X日 市民公開講座<br>
+                    高専 数学教員
+                </p>
+            </section>
+
+            <section>
+                <section>
+                    <h3>突然ですがクイズです</h3>
+                    <p>この2つの三角形は「同じ」でしょうか？</p>
+                    <div class="container">
+                        <svg width="200" height="200" viewBox="0 0 100 100">
+                            <polygon points="10,90 50,10 90,90" fill="none" stroke="black" stroke-width="3"/>
+                        </svg>
+                        <svg width="200" height="200" viewBox="0 0 100 100" style="transform: rotate(45deg);">
+                            <polygon points="10,90 50,10 90,90" fill="none" stroke="black" stroke-width="3"/>
+                        </svg>
+                    </div>
+                    <p class="fragment">答え：<span class="accent">同じ（合同）</span>ですね！</p>
+                    <p class="fragment" style="font-size: 0.7em;">「動かせば重なる」から同じです。</p>
+                </section>
+
+                <section>
+                    <h3>では、これは？</h3>
+                    <p>ドーナツ 🍩 と コーヒーカップ ☕</p>
+                    <p class="fragment">普通は「違う」と言いますよね。</p>
+                    <p class="fragment">でも、<span class="accent">トポロジー</span>の世界では...</p>
+                    <h2 class="fragment blue">「同じ」なんです！</h2>
+                </section>
+            </section>
+
+            <section data-background-color="#f0f0f0">
+                <h3>ここにThree.jsが入ります</h3>
+                <p>ドーナツ ⇔ カップ の変形アニメーション</p>
+                <div style="width: 600px; height: 400px; background: #ccc; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+                    (ここに canvas が来ます)
+                </div>
+                <p style="font-size: 0.6em;">※ iframeで埋め込むか、直接canvasを描画します</p>
+            </section>
+
+            <section>
+                <h3>「対称性」を見つけよう</h3>
+                <p>どんな「動かし方」で変わらないかな？</p>
+                
+                <div class="container">
+                    <div class="col fragment">
+                        <h1>A</h1>
+                        <p>線対称</p>
+                        <small>パタンと折れる</small>
+                    </div>
+                    <div class="col fragment">
+                        <h1>S</h1>
+                        <p>点対称</p>
+                        <small>180度回せる</small>
+                    </div>
+                    <div class="col fragment">
+                        <div style="width: 100px; height: 100px; background: red; border-radius: 50%; margin: 0 auto;"></div>
+                        <p>円</p>
+                        <small>最強の対称性</small>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <section>
+                    <h3>数学者の秘密道具</h3>
+                    <h2 class="accent">群 (Group)</h2>
+                    <p>「動かし方」のルールの集まりのこと。</p>
+                    <ul>
+                        <li class="fragment">ずらす</li>
+                        <li class="fragment">回す</li>
+                        <li class="fragment">ひっくり返す</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>ルールが変われば<br>世界が変わる</h3>
+                    <div style="text-align: left; font-size: 0.8em; margin-top: 30px;">
+                        <p class="fragment">🌎 <b>ユークリッド幾何学</b><br>
+                        ルール：回す、ずらす<br>
+                        <span class="blue">→ 長さや角度が変わらない世界</span></p>
+                        
+                        <p class="fragment">🪐 <b>トポロジー</b><br>
+                        ルール：ぐにゃぐにゃ変形する<br>
+                        <span class="blue">→ 穴の数が変わらない世界</span></p>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <h3>まとめ</h3>
+                <ul>
+                    <li class="fragment">「同じ」かどうかは、<br><b>「動かし方のルール」</b>で決まる。</li>
+                    <li class="fragment">対称性（群）を使うと、<br>複雑な図形も分類できる。</li>
+                </ul>
+                <div style="margin-top: 50px; padding: 20px; border: 2px solid #333;">
+                    <p>私の研究では、<br>この「対称性」の力を使って<br>高次元の図形の秘密を解き明かしています。</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/plugin/math/math.min.js"></script>
+    <script>
+        // Reveal.jsの初期化
+        Reveal.initialize({
+            controls: true,   // 右下のコントロール矢印
+            progress: true,   // 下部のプログレスバー
+            center: true,     // スライドを中央寄せ
+            hash: true,       // URLにスライド番号を反映
+            transition: 'slide', // スライド切り替えエフェクト (none/fade/slide/convex/concave/zoom)
+            
+            // 数式プラグイン (MathJax) を有効化
+            plugins: [ RevealMath.KaTeX ] 
+        });
+    </script>
+</body>
+</html>
