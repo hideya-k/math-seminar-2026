@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Three.js Hello World!</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+            }
+        }
+    </script>
+
+    <script type="module">
+        // ライブラリをインポート
+        import * as THREE from 'three';
+
+        // ----【基本の3点セット】----
+        
+        // 1. シーン (Scene) : 3D空間そのもの。すべての物体をここに入れる。
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xf0f0f0); // 背景を薄い灰色に
+
+        // 2. カメラ (Camera) : 3D空間を写す「目」。
+        // (視野角, アスペクト比, 描画開始距離, 描画終了距離)
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 5; // カメラを少し手前に引く
+
+        // 3. レンダラー (Renderer) : シーンとカメラを使って、実際に絵を描く人。
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight); // 描画サイズを画面いっぱいに
+        document.body.appendChild(renderer.domElement); // 描画結果(canvas)をHTMLに追加
+
+        // ----【表示する物体】----
+
+        // 4. 形 (Geometry) : 立方体の「形状」データ。
+        const geometry = new THREE.BoxGeometry(1, 1, 1); // 1x1x1 の立方体
+
+        // 5. 見た目 (Material) :「素材」。今回は簡単な緑色。
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 }); 
+
+        // 6. メッシュ (Mesh) :「形」と「見た目」を合体させた「物体」。
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube); // シーンに物体を追加
+
+        // ----【アニメーション】----
+        
+        // 7. アニメーションループ (Loop) : ずっと絵を描き続ける関数
+        function animate() {
+            requestAnimationFrame(animate); // 次のフレーム（コマ）でもこの関数を呼ぶ
+
+            // 立方体を少しずつ回転させる
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            // レンダラーで描画！
+            renderer.render(scene, camera);
+        }
+
+        // アニメーションを開始
+        animate();
+    </script>
+</body>
+</html>
